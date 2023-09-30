@@ -6,12 +6,23 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="navbar">
+        <nav>
+            <ul class = "navbarList">
+                <li>Home</li>
+                <li>Friends</li>
+                <li>Profile</li>
+            </ul>
+        </nav>
+    </div>
     <h1>Hackathon website</h1>
-    <button onClick = "addRecipe()">Click Here</button>
+    <form>
+        <label for = "ingredients">Ingredients</label>
+        <input type = "text" placeholder=" What are we cookin' today?">
+        <button onClick = "addRecipe()">Search Recipes!</button>
+    </form>
     <wrapper id = "recipeCardHolder">
         
-
-
     </wrapper>
 
     <script src = "scripts.js"></script>
