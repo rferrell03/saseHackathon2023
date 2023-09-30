@@ -1,0 +1,168 @@
+:root{
+    --text: #0e0e20;
+    --background: #e2e3f3;
+    --primary: #7779c0;
+    --secondary: #eaeaf5;
+    --accent: #5e63b5;
+    
+
+
+
+}
+
+body{
+    background-color: var(--background);
+    
+    margin:10%;
+    margin-top:1%;
+}
+
+.navbar{
+    color:var(--text);
+    border-bottom: 5px solid var(--accent);
+}
+.navbarList{
+    list-style-type: none;
+    margin:0;
+    margin-bottom: 5px;
+    padding:0;
+    overflow: hidden;
+    top: 0px;
+    left: 0px;
+}   
+
+.navbarList li, .navbarList li button{
+    color:var(--text);
+    font-size: 35px;
+    float:left;
+    margin-left:3%;
+    margin-right:.5%;
+}
+
+.navbarList li button{
+    transition: .2s;
+    border:3px solid var(--accent);
+    background-color: var(--secondary);
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.navbarList li button:hover{
+    transition-duration: .20s;
+    background-color: var(--primary);
+}
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top:5%;
+    margin-bottom: 2%;
+}
+
+#ingredientInput{
+    height:60px;
+    width:95%;
+    box-sizing: border-box;
+    padding:0px;
+    font-size: 30px;
+    font-weight:bold;
+    border:3px solid var(--accent);
+    border-radius: 5px;
+    background-color:var(--secondary);
+}
+
+#searchButton{
+    color:var(--text);
+    transition: .20s;
+    height:60px;
+    margin-left:5px;
+    border: 3px solid var(--primary);
+    background-color: var(--secondary);
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+#searchButton:hover{
+    transition-duration: .20s;
+    background-color: var(--accent);
+}
+
+
+
+@keyframes buttonHover{
+    0% {
+        background-color: var(--secondary);
+    }
+    100% {
+        background-color: var(--accent);
+    }    
+}
+
+#recipeCardHolder{
+    display:flex;
+    flex-direction: column;
+}
+
+
+.card{
+    color:var(--text);
+    width: 99%;
+    margin-bottom: 1%;
+    border:3px solid var(--accent);
+    border-radius: 3px;
+    background-color: var(--secondary);
+    display: flex;
+    overflow:scroll;
+    overflow-x:hidden;
+    max-height: 240px;
+}
+
+.card img{
+    width: 200px;
+    height: 100px;
+    margin-right:10px;
+    border:3px solid var(--accent);
+    border-radius: 5px;
+    margin-top:1%;
+    margin-left: 2%;
+}
+.card h1, h2, h3, p{
+    margin: 2px;
+    
+}
+
+.prepArea{
+    display:flex;
+}
+
+.prepArea h1{
+
+}
+
+.prepArea h3{
+    margin-right:30px;
+}
+
+main{
+    display:flex;
+    margin-top: 5px;
+    justify-content: center;
+}
+
+.weeklyLeaderboard{
+    border-radius: 5px;
+    background-color: var(--primary);
+    width: 25%;
+    margin-right:20px;
+    justify-content: center;
+
+}
+
+.mainLeaderboard{
+    border-radius: 5px;
+    width: 75%;
+    background-color: var(--primary);
+    justify-content: center;
+
+}
