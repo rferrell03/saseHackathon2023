@@ -52,7 +52,7 @@ body{
     background-color: var(--primary);
 }
 
-form{
+.form{
     display: flex;
     justify-content: center;
     align-items: center; 
