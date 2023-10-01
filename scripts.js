@@ -256,13 +256,3 @@ function homeButton(){
 function friendsButton(){
     window.location.replace("https://rferrell03.github.io/saseHackathon2023/friends.html")
 }
-
-function profileButton(){
-   var signedIn = checkSignIn();
-   if(signedIn){
-    window.location.replace("https://rferrell03.github.io/saseHackathon2023/profile.html");
-   }else{
-    window.location.replace("https://rferrell03.github.io/saseHackathon2023/signin.html");
-
-   }
-}
