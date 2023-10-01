@@ -148,12 +148,21 @@ body{
 }
 
 .animationTrigger{
-    transition: 3s;
+    transition: 2s;
     height:500px;
     overflow: scroll;
     overflow-x: hidden;
 }
-
+.card #pointsButton{
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    border:none;
+    background:#28ad5d;
+}
+.card #pointsButton:hover{
+    background:#1c7b42;
+}
 .card img{
     width: 200px;
     height: 100px;
@@ -171,6 +180,9 @@ body{
     font-family: var(--fontHeading);
     color: #28ad5d;
     
+}
+.moveThisOver{
+    margin-left:2%;
 }
 .card h2 span{
 

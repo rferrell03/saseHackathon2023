@@ -124,6 +124,7 @@ function createCards(something){
         img.src = RecipeImages[a]; // IMG SRC HERE
 
         const ingredientsTitle = document.createElement('h2');
+        ingredientsTitle.className = "moveThisOver"
         ingredientsTitle.innerHTML = "Ingredients"
 
         const ingredientList = document.createElement('ul');
@@ -223,6 +224,11 @@ function createCards(something){
         }  
 
         firstDiv.appendChild(ingredientList);
+
+        const pointsButton = document.createElement('button');
+        pointsButton.id = "pointsButton";
+        pointsButton.innerHTML = "COMPLETE";
+        rightDiv.appendChild(pointsButton);
 
         card.appendChild(firstDiv);
         card.appendChild(rightDiv);
