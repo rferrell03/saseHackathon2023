@@ -15,15 +15,16 @@
           </div>
           
           <div class="inp username">
-            <input type="text" placeholder="Email"/>
+            <input id = "username" type="text" placeholder="Email"/>
           </div>
           
           <div class="inp password">
-            <input type="password" placeholder="Password"/>
+            <input id = "password" type="password" placeholder="Password"/>
           </div>
           
           <div class="login-button">
             <button class="login">SIGN IN</button>
+            <button class="login" onClick = "register()">REGISTER</button>
             <button class="goHome">Back to Home</button>
           </div>
           <div class="password-reset">
@@ -33,5 +34,6 @@
         </div>
       </div>
   <script src = "signInScript.js"></script>
+  <script src = "firebase.js"></script>
 </body>
 </html>
