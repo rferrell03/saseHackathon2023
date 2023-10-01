@@ -342,7 +342,7 @@ main{
     margin-top:5%;
 
     font-weight: bold;
-    border-radius: 3px;
+    border-radius: 10px;
     text-align: center;
     font-family: var(--fontMiddle);
 }
@@ -381,6 +381,8 @@ main{
     border-radius: 30px;
     background-color: rgba(225, 86, 51, 0.521);
     margin-bottom: 5%;
+    font-family: var(--fontMiddle);
+    font-size: 20px;
 }
 
 .logout button:hover{
