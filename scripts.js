@@ -10,10 +10,32 @@ var RecipeSteps = [];
 var bestRecipeId;
 var RecipeImages = [];
 var RecipeIngredients = [];
+var RecipeMissingIngredients = [];
+var RecipeTime = [];
+var ingredientString;
+var ingredientArr = [];
+var FormedIngredientString = "";
 
 function getRecipes()
 {
-    var meals = fetch("https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=" + `${numOfRecipes}` + "&ranking=1&ignorePantry=true&apiKey=" + APIKey).then(res => res.json()).then(res => displayMeals(res));
+    ingredientString = "";
+    ingredientString = document.getElementById("ingredientInput").value;
+    ingredientArr = ingredientString.split(",");
+    for(var i=0;i<ingredientArr.length;i++){
+       if(i!=ingredientArr.length-1){
+            FormedIngredientString += ingredientArr[i]+",+";
+       }
+       else{
+            FormedIngredientString += ingredientArr[i];
+       }
+    }
+    ingredientArr = FormedIngredientString.split(" ");
+    FormedIngredientString = "";
+    for(var i=0;i<ingredientArr.length;i++){
+             FormedIngredientString += ingredientArr[i];
+     }
+    
+    var meals = fetch("https://api.spoonacular.com/recipes/findByIngredients?ingredients="+FormedIngredientString+"=" + `${numOfRecipes}` + "&ranking=1&ignorePantry=true&apiKey=" + APIKey).then(res => res.json()).then(res => displayMeals(res));
     function displayMeals(meal)
     {
         
@@ -27,12 +49,16 @@ function getRecipes()
                 IDString +=  "," + meal[i].id;
                 RecipeNames[i] = meal[i].title;
                 RecipeImages[i] = meal[i].image;
+                RecipeMissingIngredients[i] = meal[i].missedIngredientCount;
+                RecipeTime[i] = (Math.floor(Math.random() * 10)+6)*5;
             }
             else
             {
                 IDString += meal[i].id;
                 RecipeNames[i] = meal[i].title;
                 RecipeImages[i] = meal[i].image;
+                RecipeMissingIngredients[i] = meal[i].missedIngredientCount;
+                RecipeTime[i] = (Math.floor(Math.random() * 10)+6)*5;
             }
             if(meal[i].likes<10){
                 RecipePoints[i] = 100
@@ -43,10 +69,11 @@ function getRecipes()
             else {
                 RecipePoints[i] = 300
             }
+            
 
         }
         bestRecipeId = meal[0].id;
-        console.log(RecipePoints);
+        console.log(RecipeTime);
         
         // recipe[0].key1 = {key2:"hello"};
         // console.log(recipe[0].key1.key2);
@@ -96,14 +123,14 @@ function createCards(){
         //Creates ingredient list!
         if(a == 0){
             for(var b in RecipeIngredients){
-                console.log("Inside loop for ingredients");
+                //console.log("Inside loop for ingredients");
                 const newIngredient = document.createElement('li');
                 newIngredient.innerHTML = b;
                 ingredientList.appendChild(newIngredient);
             }
         } else{
             for(var b = 0; b < 4; b++){
-                console.log("Inside loop without ingredients");
+               // console.log("Inside loop without ingredients");
                 const newIngredients = document.createElement('li');
                 newIngredients.innerHTML = "Lorem Ipsum";
                 ingredientList.appendChild(newIngredients);
@@ -156,7 +183,7 @@ function createCards(){
         card.appendChild(rightDiv);
 
         cardWrapper.appendChild(card)
-        console.log("Reached the end of loop" + a);
+        //console.log("Reached the end of loop" + a);
     }
 }
 function addRecipe() {
