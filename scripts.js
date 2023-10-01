@@ -50,6 +50,7 @@ function getRecipes()
         
         // recipe[0].key1 = {key2:"hello"};
         // console.log(recipe[0].key1.key2);
+        createCards();
     }
 }
 
@@ -76,6 +77,88 @@ function getRecipeDetails()
     }
 }
 
+
+function createCards(){
+    for(var a = 0; a < RecipeNames.length; a++){
+        const cardWrapper = document.getElementById("recipeCardHolder");
+        const card = document.createElement('div');
+        card.className = "card";
+
+        const firstDiv = document.createElement('div');
+
+        const img = document.createElement('img');
+        img.src = RecipeImages[a]; // IMG SRC HERE
+
+        const ingredientsTitle = document.createElement('h2');
+        ingredientsTitle.innerHTML = "Ingredients"
+
+        const ingredientList = document.createElement('ul');
+        //Creates ingredient list!
+        if(a == 0){
+            for(var b in RecipeIngredients){
+                console.log("Inside loop for ingredients");
+                const newIngredient = document.createElement('li');
+                newIngredient.innerHTML = b;
+                ingredientList.appendChild(newIngredient);
+            }
+        } else{
+            for(var b = 0; b < 4; b++){
+                console.log("Inside loop without ingredients");
+                const newIngredients = document.createElement('li');
+                newIngredients.innerHTML = "Lorem Ipsum";
+                ingredientList.appendChild(newIngredients);
+            }
+        }  
+        firstDiv.appendChild(img);
+        firstDiv.appendChild(ingredientsTitle);
+        firstDiv.appendChild(ingredientList);
+        card.append(firstDiv);
+
+        //Second div is recipeName, prep information, instructions
+
+        const rightDiv = document.createElement("div");
+
+        // Create the "recipeNameArea" div
+        const recipeNameArea = document.createElement("div");
+        recipeNameArea.className = "recipeNameArea";
+
+        // Create the recipe name (h1)
+        const h1RecipeName = document.createElement("h1");
+        h1RecipeName.textContent = RecipeNames[a];
+
+        // Create the points value (h1)
+        const h1PointsValue = document.createElement("h2");
+        h1PointsValue.textContent = "Point value:";
+        const recipePoint = document.createElement('span');
+        recipePoint.innerHTML = RecipePoints[a];
+        h1PointsValue.appendChild(recipePoint);
+        // Append h1 elements to recipeNameArea
+        recipeNameArea.appendChild(h1RecipeName);
+        recipeNameArea.appendChild(h1PointsValue);
+
+        // Create the "prepArea" div
+        const prepArea = document.createElement("div");
+        prepArea.className = "prepArea";
+
+        // Create prep time (h3)
+        const h3PrepTime = document.createElement("h3");
+        h3PrepTime.textContent = "Estimated Time:";
+
+        const h3Missing = document.createElement("h3");
+        h3Missing.textContent = "Missing Ingredients:";
+
+        prepArea.appendChild(h3PrepTime);
+        prepArea.appendChild(h3Missing);
+        rightDiv.appendChild(recipeNameArea);
+        rightDiv.appendChild(prepArea);
+
+        card.appendChild(firstDiv);
+        card.appendChild(rightDiv);
+
+        cardWrapper.appendChild(card)
+        console.log("Reached the end of loop" + a);
+    }
+}
 function addRecipe() {
     getRecipes();
 }
