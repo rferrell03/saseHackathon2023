@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-    
+    import { getAuth,createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+   // import { database } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";    
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
     
@@ -23,6 +23,9 @@
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
     
+
+    var email;
+    var password;
     
     
     function register(){
@@ -34,7 +37,7 @@
             return
         }
     
-        auth.createUserWithEmailAndPassword(email,password).then(function(){
+        createUserWithEmailAndPassword(auth,email,password).then(function(){
             var user = auth.currentUser
             var database_ref = database.ref()
             var user_data = {
@@ -44,21 +47,19 @@
     
             database_ref.child('users/' + user.uid).set(user_data)
             alert("User Created!")
+            console.log("Wow it worked!")
         }).catch(function(error){
             var error_code = error.code
             var error_message = error.message
         })
+        window.location.replace("https://rferrell03.github.io/saseHackathon2023")
+
     }
     
     
     
     function validate_email(email){
-       expression = /^[^@]+@\w+(\.\w+)+\w$/.test(str);
-       if(expression.test(email) == true){
-        return true
-       } else{
-        return false
-       }
+       
     }
     
     function validate_password(password){
@@ -79,3 +80,9 @@
             return true;
         }
     }
+
+    var registerButton = document.getElementById("register");
+    registerButton.addEventListener("click", function() {
+        // Call the register function when the button is clicked
+        register();
+    });
