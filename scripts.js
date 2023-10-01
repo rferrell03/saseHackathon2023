@@ -203,7 +203,7 @@ function createCards(something){
             for(var c = 0; c < tempArray.length; c++){
 
                 const stepNumber = document.createElement('h2');
-                stepNumber.innerHTML = "Step " + c;
+                stepNumber.innerHTML = "Step " + (c + 1);
                 rightDiv.appendChild(stepNumber);
                 const instruction = document.createElement('p');
                 instruction.innerHTML = tempArray[c];
@@ -212,7 +212,7 @@ function createCards(something){
             }
             console.log("if statement ran");
             
-            for(var b = 0; b < 5; b++){
+            for(var b = 0; b < RecipeIngredients.length; b++){
                 console.log(RecipeIngredients);
                 //console.log("Inside loop for ingredients");
                 const newIngredient = document.createElement('li');
@@ -249,3 +249,15 @@ function addRecipe() {
 }
 
 
+function homeButton(){
+    window.location.replace("https://rferrell03.github.io/saseHackathon2023")
+}
+
+function friendsButton(){
+    window.location.replace("https://rferrell03.github.io/saseHackathon2023/friends.html")
+}
+
+function profileButton(){
+    //if not logged in, go to signup page
+    //else, go to profile
+}

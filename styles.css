@@ -179,6 +179,9 @@ body{
     font-family: var(--fontMiddle);
     margin-bottom: 3%;
 }
+.card p, li{
+    font-family: var(--fontSmall);
+}
 .card h1, h2, h3, p{
     margin: 2px;
     
