@@ -1,6 +1,6 @@
 var recipeContainer = document.getElementById("recipeCardHolder");
 //REMOVE THIS LOSER
-var APIKey = "84d7cc98787b4d9fa805fa3a7566ec72";
+var APIKey = "ccb9c91044704deba420d861b625cac8";
 //REMOVE
 var numOfRecipes = 10;
 var bestRecipeId = "";
