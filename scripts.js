@@ -258,6 +258,11 @@ function friendsButton(){
 }
 
 function profileButton(){
-    //if not logged in, go to signup page
-    //else, go to profile
+   var signedIn = checkSignIn();
+   if(signedIn){
+    window.location.replace("https://rferrell03.github.io/saseHackathon2023/profile.html");
+   }else{
+    window.location.replace("https://rferrell03.github.io/saseHackathon2023/signin.html");
+
+   }
 }

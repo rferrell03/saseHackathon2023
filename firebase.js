@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
-    import { getAuth,createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-   // import { database } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";    
+    import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+    import { Database, getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";    
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
     
@@ -15,13 +15,15 @@
         storageBucket: "sasehackathon2023.appspot.com",
         messagingSenderId: "238103124299",
         appId: "1:238103124299:web:10332be33328a2cd3fb0ce",
-        measurementId: "G-4JEF0J07Y3"
+        measurementId: "G-4JEF0J07Y3",
+        databaseURL: "https://sasehackathon2023-default-rtdb.firebaseio.com"
     };
     
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
+    const database = getDatabase(app);
     
 
     var email;
@@ -39,20 +41,23 @@
     
         createUserWithEmailAndPassword(auth,email,password).then(function(){
             var user = auth.currentUser
-            var database_ref = database.ref()
+            var db = getDatabase();
             var user_data = {
                 email: email,
-                last_login : Date.now()
+                name: email,
+                last_login : Date.now(),
+                points: 0
             }
     
-            database_ref.child('users/' + user.uid).set(user_data)
+            set(ref(db, 'users/' + user.uid),user_data).then(() => {alert("User Created!");window.location.replace("https://rferrell03.github.io/saseHackathon2023")
+        });
             alert("User Created!")
             console.log("Wow it worked!")
         }).catch(function(error){
             var error_code = error.code
             var error_message = error.message
         })
-        window.location.replace("https://rferrell03.github.io/saseHackathon2023")
+        
 
     }
     
@@ -81,8 +86,63 @@
         }
     }
 
+    
     var registerButton = document.getElementById("register");
-    registerButton.addEventListener("click", function() {
+    if(registerButton != null){
+        registerButton.addEventListener("click", function() {
+            // Call the register function when the button is clicked
+            register();
+        });
+    }
+    var loginButton = document.getElementById("login");
+    if(loginButton != null){
+    loginButton.addEventListener("click", function() {
         // Call the register function when the button is clicked
-        register();
-    });
+        login();
+    });}
+
+    function login(){
+        email = document.getElementById('username').value
+        password = document.getElementById("password").value
+
+        signInWithEmailAndPassword(auth,email,password).then(function(){
+            var user = auth.currentUser
+            var db= getDatabase();
+            var user_data = {
+                last_login : Date.now()
+            }
+    
+            update(ref(db , 'users/' + user.uid), user_data);
+        }).catch(function(error){
+            var error_code = error.code
+            var error_message = error.message
+        })
+        window.location.replace("https://rferrell03.github.io/saseHackathon2023")
+
+    }
+
+    function checkSignIn(){
+        var user = auth.currentUser;
+        if(user){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function profileButton(){
+        var signedIn = checkSignIn();
+        if(signedIn){
+         window.location.replace("https://rferrell03.github.io/saseHackathon2023/profile.html");
+        }else{
+         window.location.replace("https://rferrell03.github.io/saseHackathon2023/signin.html");
+     
+        }
+     }
+
+     var profButton = document.getElementById("profileButton");
+     if(profButton != null){
+    profButton.addEventListener("click", function() {
+        // Call the register function when the button is clicked
+        profileButton();
+    });}
