@@ -5,9 +5,6 @@ var APIKey = "4d71d022dd444af3815791c9ea3f4d44";
 var numOfRecipes = 10;
 var bestRecipeId = "";
 var RecipeNames = [];
-//var RecipePrepTimes = [];
-//var RecipeCookTimes = [];
-//var RecipeServings = [];
 var RecipePoints = [];
 var RecipeSteps = [];
 var bestRecipeId;
@@ -35,12 +32,21 @@ function getRecipes()
             {
                 IDString += meal[i].id;
                 RecipeNames[i] = meal[i].title;
+                RecipeImages[i] = meal[i].image;
             }
-            
+            if(meal[i].likes<10){
+                RecipePoints[i] = 100
+            }
+            else if(meal[i].likes<75){
+                RecipePoints[i] = 200
+            }
+            else {
+                RecipePoints[i] = 300
+            }
+
         }
         bestRecipeId = meal[0].id;
-        getRecipeDetails();
-        
+        console.log(RecipePoints);
         
         // recipe[0].key1 = {key2:"hello"};
         // console.log(recipe[0].key1.key2);
@@ -52,9 +58,7 @@ function getRecipeDetails()
     var recipes = fetch("https://api.spoonacular.com/recipes/" + bestRecipeId + "/analyzedInstructions?apiKey=" + APIKey).then(res => res.json()).then(res => displayRecipes(res));
     function displayRecipes(recipe)
     {
-        // for(let i =0;i<numOfRecipes;i++){
-        //     console.log(recipe);
-        // }
+
         for (let i = 0; i < recipe[0].steps.length; i++)
         {
             RecipeSteps[i] = recipe[0].steps[i].step;
