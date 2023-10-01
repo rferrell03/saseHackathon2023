@@ -204,10 +204,13 @@ main{
 .weeklyLeaderboard{
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
-    background-color: var(--primary);
+    border-radius: 10px;
+    background: rgba(255, 254, 254, 0.4);
     width: 40%;
-    margin-right:20px;
+    margin-right: 5px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 
 }
 .weeklyLeaderboard .card{
@@ -216,13 +219,43 @@ main{
     width:85%;
     margin-left:5%;
     border-radius: 30px;
-    
 }
+
+.weeklyLeaderboard h1{
+    font-family: var(--fontHeading);
+}
+
+.weeklyLeaderboard h2{
+    font-family: var(--fontMiddle)
+}
+
+.cardContent h1{
+    font-family: var(--fontHeading);
+    font-size: 5px;
+}
+
+.cardContent h3{
+    font-family: var(--fontMiddle);
+}
+
 .weeklyLeaderboard .card img{
     width:120px;
     height:120px;
-    border-radius: 20px;
+    border-radius: 50%;
+    margin-top: 3%;
     
+}
+
+.weeklyLeaderboard h1{
+    text-align: center;
+}
+
+.leaderboards{
+    justify-content: center;
+} 
+
+.mainLeaderboard h1{
+    text-align: center;
 }
 
 .cardContent h1{
@@ -233,16 +266,30 @@ main{
     font-size:35px;
 }
 
+.pointsText{
+    color: #28ad5d;
+}
+
 .mainLeaderboard{
     display: flex;
     flex-direction: column;
     border-radius: 5px;
     width: 60%;
-    background-color: var(--primary);
+    background: rgb(255, 254, 254, 0.4);
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
 
 }
 
+.mainLeaderboard h1{
+    font-family: var(--fontHeading);
+}
+
 .mainLeaderboard .card{
+    height: fit-content;
     border-radius: 20px;
     margin-left:5%;
     width:90%;
@@ -250,9 +297,10 @@ main{
 }
 
 .mainLeaderboard .card img{
+    margin-top: 5%;
     width: 120px;
     height: 120px;
-    border-radius: 20px;
+    border-radius: 50%;
 }
 
 .profileArea{
