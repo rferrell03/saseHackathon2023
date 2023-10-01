@@ -160,7 +160,7 @@ function createCards(something){
 
         // Create prep time (h3)
         const h3PrepTime = document.createElement("h3");
-        h3PrepTime.textContent = "Estimated Time: " + RecipeTime[a];
+        h3PrepTime.textContent = "Estimated Time: " + RecipeTime[a] + " minutes";
 
 
         const h3Missing = document.createElement("h3");

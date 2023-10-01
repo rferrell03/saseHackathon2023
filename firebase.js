@@ -112,12 +112,11 @@
                 last_login : Date.now()
             }
     
-            update(ref(db , 'users/' + user.uid), user_data);
+            update(ref(db , 'users/' + user.uid), user_data).then(() => window.location.replace("https://rferrell03.github.io/saseHackathon2023"));
         }).catch(function(error){
             var error_code = error.code
             var error_message = error.message
         })
-        window.location.replace("https://rferrell03.github.io/saseHackathon2023")
 
     }
 
