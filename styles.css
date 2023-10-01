@@ -304,15 +304,30 @@ main{
 }
 
 .profileArea{
-    width: 25%;
+    width: 30%;
+    margin-left: 2%;
+    background: rgba(255, 254, 254, 0.4);
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 1%;
+    border-radius: 5%;
+    height: fit-content;
+
+}
+
+.name {
+    text-align: center;
+    font-family: var(--fontHeading);
 }
 
 .profileArea img{
-    width: 300px;
-    height: 300px;
-    border: 3px solid var(--accent);
+    width: 200px;
+    height: 200px;
+    border: 3px solid;
     border-radius: 50%;
     margin-top: 15%;
+    justify-content: center;
+    margin-left: 13%;
 }
 
 .profileArea .name{
@@ -322,12 +337,20 @@ main{
 }
 
 .profileArea .pointsCard{
-    background-color: var(--accent);
+    background-color: rgba(55, 178, 98, 0.797);
     font-size: 35px;
     margin-top:5%;
 
     font-weight: bold;
     border-radius: 3px;
+    text-align: center;
+    font-family: var(--fontMiddle);
+}
+
+.totalProfilePoints {
+    text-align: center;
+    font-size: 50px;
+    font-family: var(--fontHeading)
 }
 
 .profileArea .streakArea{
@@ -336,6 +359,10 @@ main{
     margin-top:5%;
     font-size: 35px;
     font-weight: bold;
+}
+
+.recipeNameArea h1{
+
 }
 
 .recipeHistory{
@@ -353,7 +380,7 @@ main{
     border:none;
     border-radius: 30px;
     background-color: rgba(225, 86, 51, 0.521);
-    margin-top:50%;
+    margin-bottom: 5%;
 }
 
 .logout button:hover{
