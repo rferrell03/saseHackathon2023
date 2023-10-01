@@ -109,17 +109,18 @@
     margin-bottom: 30px;
   }
   
-  .login-button {
+  .login-button, .goToHome {
     margin: 0 auto;
     margin-top: 20px;
     text-align: center;
   }
   
-  .login {
+  .login, .goHome {
     background-color:#7779c0;
     width: 90%;
     border: none;
     height: 50px;
+    margin-bottom: 5px;
     border-radius: 4px;
     color: rgba(252, 255, 255, 1);
     font-size: 1.1em;
@@ -128,12 +129,12 @@
     transition: .2s ease-out;
   }
   
-  .login:focus {
+  .login:focus, .goHome:focus {
     outline-width: 0;
     border-bottom: 1px solid rgba(227, 60, 124, 1);
   }
   
-  .login:hover {
+  .login:hover, .goHome:hover {
     background-color: #5b5eae;
   }
   
