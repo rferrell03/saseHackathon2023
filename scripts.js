@@ -1,12 +1,12 @@
 var recipeContainer = document.getElementById("recipeCardHolder");
 //REMOVE THIS LOSER
-var APIKey = "4d71d022dd444af3815791c9ea3f4d44";
+var APIKey = "84d7cc98787b4d9fa805fa3a7566ec72";
 //REMOVE
 var numOfRecipes = 10;
 var bestRecipeId = "";
 var RecipeNames = [];
 var RecipePoints = [];
-var RecipeSteps = [];
+var RecipeSteps;
 var bestRecipeId;
 var RecipeImages = [];
 var RecipeIngredients = [];
@@ -15,6 +15,8 @@ var RecipeTime = [];
 var ingredientString;
 var ingredientArr = [];
 var FormedIngredientString = "";
+var realRecipeSteps;
+var astring = "";
 
 function getRecipes()
 {
@@ -77,35 +79,40 @@ function getRecipes()
         
         // recipe[0].key1 = {key2:"hello"};
         // console.log(recipe[0].key1.key2);
-        createCards();
+        getRecipeDetails();
+        createCards(astring);
     }
 }
 
 function getRecipeDetails()
 {
-    var recipes = fetch("https://api.spoonacular.com/recipes/" + bestRecipeId + "/analyzedInstructions?apiKey=" + APIKey).then(res => res.json()).then(res => displayRecipes(res));
-    function displayRecipes(recipe)
-    {
+    // var tempArray = "";
+    // var recipes = fetch("https://api.spoonacular.com/recipes/" + bestRecipeId + "/analyzedInstructions?apiKey=" + APIKey).then(res => res.json()).then(res => displayRecipes(res));
+    // function displayRecipes(recipe)
+    // {
+    //     for (let i = 0; i < recipe[0].steps.length; i++)
+    //     {
 
-        for (let i = 0; i < recipe[0].steps.length; i++)
-        {
-            RecipeSteps[i] = recipe[0].steps[i].step;
-            var currentIngredients = recipe[0].steps[i].ingredients;
-            currentIngredients.forEach(element => {
-                if (!RecipeIngredients.includes(element.name))
-                {
-                    RecipeIngredients.push(element.name);
-                }
-            });
-        }
-        console.log(RecipeIngredients);
-        
-        //console.log(bestRecipeId);
-    }
+    //         tempArray += recipe[0].steps[i].step;
+    //         var currentIngredients = recipe[0].steps[i].ingredients;
+    //         currentIngredients.forEach(element => {
+    //             if (!RecipeIngredients.includes(element.name))
+    //             {
+    //                 RecipeIngredients.push(element.name);
+    //             }
+    //         });
+    //     }
+    //     var realRecipeSteps = RecipeSteps;
+    //     console.log(tempArray);
+    //     astring = tempArray;
+    //     //return tempArray;
+    //     //console.log(bestRecipeId);
+    // }
+    //return tempArray;
 }
 
 
-function createCards(){
+function createCards(something){
     for(var a = 0; a < RecipeNames.length; a++){
         const cardWrapper = document.getElementById("recipeCardHolder");
         const card = document.createElement('div');
@@ -121,25 +128,9 @@ function createCards(){
 
         const ingredientList = document.createElement('ul');
         //Creates ingredient list!
-        if(a == 0){
-            for(var b in RecipeIngredients){
-                //console.log("Inside loop for ingredients");
-                const newIngredient = document.createElement('li');
-                newIngredient.innerHTML = b;
-                ingredientList.appendChild(newIngredient);
-            }
-        } else{
-            for(var b = 0; b < 4; b++){
-               // console.log("Inside loop without ingredients");
-                const newIngredients = document.createElement('li');
-                newIngredients.innerHTML = "Lorem Ipsum";
-                ingredientList.appendChild(newIngredients);
-            }
-        }  
         firstDiv.appendChild(img);
         firstDiv.appendChild(ingredientsTitle);
-        firstDiv.appendChild(ingredientList);
-        card.append(firstDiv);
+        //card.append(firstDiv);
 
         //Second div is recipeName, prep information, instructions
 
@@ -169,15 +160,69 @@ function createCards(){
 
         // Create prep time (h3)
         const h3PrepTime = document.createElement("h3");
-        h3PrepTime.textContent = "Estimated Time:";
+        h3PrepTime.textContent = "Estimated Time: " + RecipeTime[a];
+
 
         const h3Missing = document.createElement("h3");
-        h3Missing.textContent = "Missing Ingredients:";
+        h3Missing.textContent = "Missing Ingredients: " + RecipeMissingIngredients[a];
 
         prepArea.appendChild(h3PrepTime);
         prepArea.appendChild(h3Missing);
         rightDiv.appendChild(recipeNameArea);
         rightDiv.appendChild(prepArea);
+
+        
+        if(a == 0){
+
+            var tempArray = [];
+            var recipes = fetch("https://api.spoonacular.com/recipes/" + bestRecipeId + "/analyzedInstructions?apiKey=" + APIKey).then(res => res.json()).then(res => displayRecipes(res));
+            function displayRecipes(recipe)
+            {
+                for (let i = 0; i < recipe[0].steps.length; i++)
+                {
+        
+                    tempArray[i] = recipe[0].steps[i].step;
+                    var currentIngredients = recipe[0].steps[i].ingredients;
+                    currentIngredients.forEach(element => {
+                        if (!RecipeIngredients.includes(element.name))
+                        {
+                            RecipeIngredients.push(element.name);
+                        }
+                    });
+                }
+                //var realRecipeSteps = RecipeSteps;
+                console.log(RecipeIngredients);
+                //astring = tempArray;
+                //return tempArray;
+                //console.log(bestRecipeId);
+            
+
+            //getRecipeDetails(something);
+            console.log(tempArray);
+           // console.log(RecipeSteps);
+            for(var c = 0; c < tempArray.length; c++){
+
+                const stepNumber = document.createElement('h2');
+                stepNumber.innerHTML = "Step " + c;
+                rightDiv.appendChild(stepNumber);
+                const instruction = document.createElement('p');
+                instruction.innerHTML = tempArray[c];
+                rightDiv.appendChild(instruction);
+                console.log("Loop ran")
+            }
+            console.log("if statement ran");
+            
+            for(var b = 0; b < 5; b++){
+                console.log(RecipeIngredients);
+                //console.log("Inside loop for ingredients");
+                const newIngredient = document.createElement('li');
+                newIngredient.innerHTML = RecipeIngredients[b];
+                ingredientList.appendChild(newIngredient);
+            }
+        }
+        }  
+
+        firstDiv.appendChild(ingredientList);
 
         card.appendChild(firstDiv);
         card.appendChild(rightDiv);
@@ -185,7 +230,20 @@ function createCards(){
         cardWrapper.appendChild(card)
         //console.log("Reached the end of loop" + a);
     }
+
+    const cardsId = document.getElementsByClassName("card")
+
+    for(let i = 0; i < cardsId.length; i++) {
+        cardsId[i].addEventListener("click", function() {
+            if(cardsId[i].classList.contains("card animationTrigger")){
+                cardsId[i].className = "card";
+            }else{
+                cardsId[i].className = "card animationTrigger"
+            }
+        })
+    }
 }
+
 function addRecipe() {
     getRecipes();
 }

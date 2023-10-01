@@ -150,6 +150,8 @@ body{
 .animationTrigger{
     transition: 3s;
     height:500px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .card img{
@@ -168,12 +170,14 @@ body{
 .card h2{
     font-family: var(--fontHeading);
     color: #28ad5d;
+    
 }
 .card h2 span{
 
 }
 .card h3{
     font-family: var(--fontMiddle);
+    margin-bottom: 3%;
 }
 .card h1, h2, h3, p{
     margin: 2px;
