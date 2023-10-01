@@ -2,7 +2,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
     import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-    import { Database, getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";    
+    import { Database, getDatabase, set, ref,child, update, onValue,get } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";    
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
     
@@ -146,3 +146,20 @@
         // Call the register function when the button is clicked
         profileButton();
     });}
+
+    var profName = document.getElementById("user");
+    if(profName != null){
+        var user = auth.currentUser
+        var uid = user.uid;
+        const db= getDatabase();
+        get(child(db, `users/${uid}/name`)).then((snapshot) => {
+            if (snapshot.exists()) {
+              var userName = snapshot.val();
+            } else {
+              console.log("No data available");
+            }
+          }).catch((error) => {
+            console.error(error);
+          });
+        profName.innerHTML = userName;
+    }
