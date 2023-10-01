@@ -347,6 +347,10 @@ main{
     font-family: var(--fontMiddle);
 }
 
+.recipeHistoryTitle {
+    font-family: var(--fontHeading);
+}
+
 .totalProfilePoints {
     text-align: center;
     font-size: 50px;
